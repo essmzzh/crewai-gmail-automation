@@ -70,7 +70,7 @@ class GmailCrewAi():
 		"""The email categorizer agent."""
 		return Agent(
 			config=self.agents_config['categorizer'],
-			tools=[FileReadTool(), DateCalculationTool()],
+			tools=[FileReadTool()],
 			llm=self.llm,
 		)
 
