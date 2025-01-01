@@ -93,6 +93,15 @@ class GmailCrewAi():
 		)
 	
 	@agent
+	def notifier(self) -> Agent:
+		"""The email notification agent."""
+		return Agent(
+			config=self.agents_config['notifier'],
+			tools=[SlackNotificationTool()],
+			llm=self.llm,
+		)
+
+	@agent
 	def cleaner(self) -> Agent:
 		"""The email cleanup agent."""
 		return Agent(
@@ -125,6 +134,14 @@ class GmailCrewAi():
 			output_pydantic=EmailResponse,
 		)
 	
+	@task
+	def notification_task(self) -> Task:
+		"""The email notification task."""
+		return Task(
+			config=self.tasks_config['notification_task'],
+			output_pydantic=SlackNotification,
+		)
+
 	@task
 	def cleanup_task(self) -> Task:
 		"""The email cleanup task."""
