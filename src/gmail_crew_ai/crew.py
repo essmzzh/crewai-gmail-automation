@@ -10,6 +10,7 @@ from datetime import date, datetime
 from gmail_crew_ai.tools.gmail_tools import GetUnreadEmailsTool, SaveDraftTool, GmailOrganizeTool, GmailDeleteTool, EmptyTrashTool
 from gmail_crew_ai.tools.slack_tool import SlackNotificationTool
 from gmail_crew_ai.tools.date_tools import DateCalculationTool
+from gmail_crew_ai.tools.audit_tool import AuditLogTool
 from gmail_crew_ai.models import CategorizedEmail, OrganizedEmail, EmailResponse, SlackNotification, EmailCleanupInfo, SimpleCategorizedEmail, EmailDetails
 
 @CrewBase
@@ -70,7 +71,7 @@ class GmailCrewAi():
 		"""The email categorizer agent."""
 		return Agent(
 			config=self.agents_config['categorizer'],
-			tools=[FileReadTool()],
+			tools=[FileReadTool(), DateCalculationTool()],
 			llm=self.llm,
 		)
 
@@ -102,11 +103,28 @@ class GmailCrewAi():
 		)
 
 	@agent
+	def security_scanner(self) -> Agent:
+		"""The security scanner agent."""
+		return Agent(
+			config=self.agents_config['security_scanner'],
+			tools=[AuditLogTool(), FileReadTool(), GmailDeleteTool()],
+			llm=self.llm,
+		)
+
+	@agent
+	def summarizer(self) -> Agent:
+		"""The email summarizer agent."""
+		return Agent(
+			config=self.agents_config['summarizer'],
+			llm=self.llm,
+		)
+
+	@agent
 	def cleaner(self) -> Agent:
 		"""The email cleanup agent."""
 		return Agent(
 			config=self.agents_config['cleaner'],
-			tools=[GmailDeleteTool(), EmptyTrashTool()],
+			tools=[GmailDeleteTool()],
 			llm=self.llm,
 		)
 

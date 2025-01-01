@@ -53,6 +53,26 @@ notifier:
   verbose: true
   memory: true
 
+security_scanner:
+  role: >
+    Security and Audit Specialist
+  goal: >
+    Scan and audit email operations for security compliance.
+  backstory: >
+    You are a cybersecurity expert ensuring all email actions are logged.
+  verbose: true
+  memory: true
+
+summarizer:
+  role: >
+    Email Summarizer
+  goal: >
+    Summarize emails into key points.
+  backstory: >
+    You are an expert summarizer.
+  verbose: true
+  memory: true
+
 cleaner:
   role: >
     Email Cleanup Specialist
