@@ -60,10 +60,7 @@ class GmailCrewAi():
 		
 		return inputs
 	
-	llm = LLM(
-		model="openai/gpt-4o-mini",
-		api_key=os.getenv("OPENAI_API_KEY"),
-	)
+	# Model removed in S7
 
 	@agent
 	def categorizer(self) -> Agent:
@@ -71,7 +68,6 @@ class GmailCrewAi():
 		return Agent(
 			config=self.agents_config['categorizer'],
 			tools=[FileReadTool()],
-			llm=self.llm,
 		)
 
 	@agent
@@ -80,7 +76,6 @@ class GmailCrewAi():
 		return Agent(
 			config=self.agents_config['organizer'],
 			tools=[GmailOrganizeTool(), FileReadTool()],
-			llm=self.llm,
 		)
 		
 	@agent
@@ -89,7 +84,6 @@ class GmailCrewAi():
 		return Agent(
 			config=self.agents_config['response_generator'],
 			tools=[SaveDraftTool()],
-			llm=self.llm,
 		)
 	
 	@agent
@@ -98,7 +92,6 @@ class GmailCrewAi():
 		return Agent(
 			config=self.agents_config['notifier'],
 			tools=[SlackNotificationTool()],
-			llm=self.llm,
 		)
 
 	@agent
@@ -107,7 +100,6 @@ class GmailCrewAi():
 		return Agent(
 			config=self.agents_config['cleaner'],
 			tools=[GmailDeleteTool(), EmptyTrashTool()],
-			llm=self.llm,
 		)
 
 	@task
