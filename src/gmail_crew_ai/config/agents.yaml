@@ -53,6 +53,16 @@ notifier:
   verbose: true
   memory: true
 
+summarizer:
+  role: >
+    Email Summarizer
+  goal: >
+    Summarize emails into key points.
+  backstory: >
+    You are an expert summarizer.
+  verbose: true
+  memory: true
+
 cleaner:
   role: >
     Email Cleanup Specialist

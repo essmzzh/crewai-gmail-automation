@@ -102,6 +102,14 @@ class GmailCrewAi():
 		)
 
 	@agent
+	def summarizer(self) -> Agent:
+		"""The email summarizer agent."""
+		return Agent(
+			config=self.agents_config['summarizer'],
+			llm=self.llm,
+		)
+
+	@agent
 	def cleaner(self) -> Agent:
 		"""The email cleanup agent."""
 		return Agent(
