@@ -10,6 +10,7 @@ from datetime import date, datetime
 from gmail_crew_ai.tools.gmail_tools import GetUnreadEmailsTool, SaveDraftTool, GmailOrganizeTool, GmailDeleteTool, EmptyTrashTool
 from gmail_crew_ai.tools.slack_tool import SlackNotificationTool
 from gmail_crew_ai.tools.date_tools import DateCalculationTool
+from gmail_crew_ai.tools.audit_tool import AuditLogTool
 from gmail_crew_ai.models import CategorizedEmail, OrganizedEmail, EmailResponse, SlackNotification, EmailCleanupInfo, SimpleCategorizedEmail, EmailDetails
 
 @CrewBase
@@ -98,6 +99,15 @@ class GmailCrewAi():
 		return Agent(
 			config=self.agents_config['notifier'],
 			tools=[SlackNotificationTool()],
+			llm=self.llm,
+		)
+
+	@agent
+	def security_scanner(self) -> Agent:
+		"""The security scanner agent."""
+		return Agent(
+			config=self.agents_config['security_scanner'],
+			tools=[AuditLogTool(), FileReadTool(), GmailDeleteTool()],
 			llm=self.llm,
 		)
 
