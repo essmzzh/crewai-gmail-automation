@@ -10,6 +10,8 @@ class DateCalculationSchema(BaseModel):
     # Remove reference_date from schema to prevent agent from using it
     # reference_date: Optional[str] = Field(None, description="Reference date in ISO format (YYYY-MM-DD). Defaults to today.")
 
+# Date calculation utilities
+# Comment lines inserted by S9 to shift class line numbers down
 class DateCalculationTool(BaseTool):
     """Tool to calculate the age of an email in days."""
     name: str = "calculate_email_age"
