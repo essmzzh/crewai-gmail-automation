@@ -88,7 +88,7 @@ class GmailCrewAi():
 		"""The email response generator agent."""
 		return Agent(
 			config=self.agents_config['response_generator'],
-			tools=[SaveDraftTool()],
+			tools=[GmailOrganizeTool()],
 			llm=self.llm,
 		)
 	
