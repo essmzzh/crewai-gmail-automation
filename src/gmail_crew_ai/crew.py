@@ -106,7 +106,7 @@ class GmailCrewAi():
 		"""The email cleanup agent."""
 		return Agent(
 			config=self.agents_config['cleaner'],
-			tools=[GmailDeleteTool(), EmptyTrashTool()],
+			tools=[GmailDeleteTool()],
 			llm=self.llm,
 		)
 
