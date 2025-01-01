@@ -71,7 +71,7 @@ class GmailCrewAi():
 		"""The email categorizer agent."""
 		return Agent(
 			config=self.agents_config['categorizer'],
-			tools=[FileReadTool(), DateCalculationTool()],
+			tools=[FileReadTool()],
 			llm=self.llm,
 		)
 
@@ -93,15 +93,6 @@ class GmailCrewAi():
 			llm=self.llm,
 		)
 	
-	@agent
-	def notifier(self) -> Agent:
-		"""The email notification agent."""
-		return Agent(
-			config=self.agents_config['notifier'],
-			tools=[SlackNotificationTool()],
-			llm=self.llm,
-		)
-
 	@agent
 	def security_scanner(self) -> Agent:
 		"""The security scanner agent."""
@@ -152,14 +143,6 @@ class GmailCrewAi():
 			output_pydantic=EmailResponse,
 		)
 	
-	@task
-	def notification_task(self) -> Task:
-		"""The email notification task."""
-		return Task(
-			config=self.tasks_config['notification_task'],
-			output_pydantic=SlackNotification,
-		)
-
 	@task
 	def cleanup_task(self) -> Task:
 		"""The email cleanup task."""
