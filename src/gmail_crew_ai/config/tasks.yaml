@@ -130,34 +130,6 @@ response_task:
   context: [categorization_task, organization_task]
   output_file: output/response_report.json
 
-notification_task:
-  description: >
-    Based on the categorization report, send Slack notifications for HIGH priority emails using the 'SlackNotificationTool'.
-    
-    For each HIGH priority email:
-    1. Create a brief summary of the email content
-    2. Identify any action needed
-    3. Create an attention-grabbing headline
-    4. Add an emoji-filled intro
-    
-    Use the 'SlackNotificationTool' with:
-    - subject: The email subject
-    - sender: The email sender
-    - category: The email category (YOUTUBE, PERSONAL, etc.)
-    - priority: HIGH
-    - summary: Your brief summary
-    - action_needed: What action is needed
-    - headline: Your custom headline
-    - intro: Your custom intro with emojis
-    
-    Your final answer should list all notifications sent.
-  expected_output: >
-    A report of which emails had Slack notifications sent, including their subjects, priorities, and the creative elements used.
-    The report should be in correct Markdown format without any additional text or formatting such as "```" or "```md".
-  agent: notifier
-  context: [categorization_task]
-  output_file: output/notification_report.json
-
 cleanup_task:
   description: >
     Based on the categorization report, identify LOW priority emails that are safe to delete.
