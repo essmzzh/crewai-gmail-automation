@@ -65,13 +65,18 @@ class GmailCrewAi():
 		api_key=os.getenv("OPENAI_API_KEY"),
 	)
 
+	categorizer_llm = LLM(
+		model="openai/gpt-4o",
+		api_key=os.getenv("OPENAI_API_KEY"),
+	)
+
 	@agent
 	def categorizer(self) -> Agent:
 		"""The email categorizer agent."""
 		return Agent(
 			config=self.agents_config['categorizer'],
 			tools=[FileReadTool()],
-			llm=self.llm,
+			llm=self.categorizer_llm,
 		)
 
 	@agent
