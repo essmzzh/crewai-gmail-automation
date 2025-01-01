@@ -7,7 +7,7 @@ from typing import List, Dict, Any, Callable
 from pydantic import SkipValidation
 from datetime import date, datetime
 
-from gmail_crew_ai.tools.gmail_tools import GetUnreadEmailsTool, SaveDraftTool, GmailOrganizeTool, GmailDeleteTool, EmptyTrashTool
+from gmail_crew_ai.tools.gmail_tools import GetUnreadEmailsTool, StoreDraftTool, GmailOrganizeTool, GmailDeleteTool, EmptyTrashTool
 from gmail_crew_ai.tools.slack_tool import SlackNotificationTool
 from gmail_crew_ai.tools.date_tools import DateCalculationTool
 from gmail_crew_ai.models import CategorizedEmail, OrganizedEmail, EmailResponse, SlackNotification, EmailCleanupInfo, SimpleCategorizedEmail, EmailDetails
@@ -88,7 +88,7 @@ class GmailCrewAi():
 		"""The email response generator agent."""
 		return Agent(
 			config=self.agents_config['response_generator'],
-			tools=[SaveDraftTool()],
+			tools=[StoreDraftTool()],
 			llm=self.llm,
 		)
 	

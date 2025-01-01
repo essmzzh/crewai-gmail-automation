@@ -255,13 +255,13 @@ class GetUnreadEmailsTool(GmailToolBase):
         return ""
 
 class SaveDraftSchema(BaseModel):
-    """Schema for SaveDraftTool input."""
+    """Schema for StoreDraftTool input."""
     subject: str = Field(..., description="Email subject")
     body: str = Field(..., description="Email body content")
     recipient: str = Field(..., description="Recipient email address")
     thread_info: Optional[Dict[str, Any]] = Field(None, description="Thread information for replies")
 
-class SaveDraftTool(BaseTool):
+class StoreDraftTool(BaseTool):
     """Tool to save an email as a draft using IMAP."""
     name: str = "save_email_draft"
     description: str = "Saves an email as a draft in Gmail"
