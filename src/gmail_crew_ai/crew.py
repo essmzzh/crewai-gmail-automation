@@ -66,10 +66,10 @@ class GmailCrewAi():
 	)
 
 	@agent
-	def categorizer(self) -> Agent:
+	def email_categorizer(self) -> Agent:
 		"""The email categorizer agent."""
 		return Agent(
-			config=self.agents_config['categorizer'],
+			config=self.agents_config['email_categorizer'],
 			tools=[FileReadTool()],
 			llm=self.llm,
 		)

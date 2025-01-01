@@ -1,4 +1,4 @@
-categorizer:
+email_categorizer:
   role: >
     Email Categorizer and Prioritizer
   goal: >

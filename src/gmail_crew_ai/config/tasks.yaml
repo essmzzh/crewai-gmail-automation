@@ -50,7 +50,7 @@ categorization_task:
     Just return the raw JSON object.
   expected_output: >
     A JSON object with email_id, subject, category, priority, and required_action fields.
-  agent: categorizer
+  agent: email_categorizer
   output_file: output/categorization_report.json
 
 organization_task:
