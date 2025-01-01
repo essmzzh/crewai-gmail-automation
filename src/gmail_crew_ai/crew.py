@@ -61,7 +61,7 @@ class GmailCrewAi():
 		return inputs
 	
 	llm = LLM(
-		model="openai/gpt-4o-mini",
+		model="openai/gpt-4o",
 		api_key=os.getenv("OPENAI_API_KEY"),
 	)
 
